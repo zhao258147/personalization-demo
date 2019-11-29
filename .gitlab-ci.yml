@@ -1,0 +1,13 @@
+stages:
+- build
+
+# 打完镜像会自动推送到镜像仓库, 以分支名或TAG名作为镜像的版本
+build_image:
+  stage: build
+  script:
+    - sbt docker:publish
+  only:
+    - master
+    - /(ci\-)+.*$/
+    - tags
+
